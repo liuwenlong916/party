@@ -42,3 +42,38 @@ class UserService extends Service {
   }
 }
 ```
+
+## 封装 Controller 基类
+
+其他 controller 类继承该基类 BaseController，不继承 Controller。
+
+```javascript
+//controller/base.js
+const Controller = require("egg").Controller;
+
+//定义基类，封装规范。
+class BaseController extends Controller {
+  success(data) {
+    this.ctx.body = {
+      errCode: 0,
+      errMsg: "",
+      data,
+    };
+  }
+  message(msg) {
+    this.ctx.body = {
+      errCode: 0,
+      errMsg: msg,
+    };
+  }
+  error(code = -1, msg, error = {}) {
+    this.ctx.body = {
+      errCode: code,
+      errMsg: msg,
+      data: error,
+    };
+  }
+}
+
+module.exports = BaseController;
+```
