@@ -5,10 +5,12 @@
  */
 module.exports = (app) => {
   const { router, controller } = app;
+  const jwt = app.middleware.jwt({ app });
   router.get("/", controller.home.index);
   router.get("/captcha", controller.util.captcha);
   router.group({ name: "user", prefix: "/user" }, (router) => {
-    const { info } = controller.user;
-    router.get("/:user_id", info);
+    const { info, login } = controller.user;
+    router.get("/login/:user_code", login);
+    router.get("/:user_id", jwt, info);
   });
 };

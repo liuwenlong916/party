@@ -35,6 +35,10 @@ module.exports = (appInfo) => {
         database: "db_widm",
       },
     },
+
+    jwt: {
+      secret: "qwer@1234",
+    },
   };
 };
 

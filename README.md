@@ -82,5 +82,6 @@ module.exports = BaseController;
 
 1. /user/:user_id => ctx.params.user_id 获取
 2. /user?user_id = 1 => ctx.query.user_id 获取
+3. ctx.request.body 是哪个？请求体？
 
 ## 鉴权 JWT
