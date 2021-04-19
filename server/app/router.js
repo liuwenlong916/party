@@ -8,6 +8,6 @@ module.exports = (app) => {
   router.get("/", controller.home.index);
   router.group({ name: "user", prefix: "/user" }, (router) => {
     const { info } = controller.user;
-    router.get("/", info);
+    router.get("/:user_id", info);
   });
 };

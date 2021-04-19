@@ -6,7 +6,6 @@ class UserController extends BaseController {
     const { ctx } = this;
     const user_id = ctx.params.user_id;
     const user = await ctx.service.user.find(user_id);
-    // ctx.body = user;
     this.success(user);
   }
 }

@@ -1,19 +1,19 @@
 /* eslint valid-jsdoc: "off" */
 
-'use strict';
+"use strict";
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-module.exports = appInfo => {
+module.exports = (appInfo) => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1617933229093_7099';
+  config.keys = appInfo.name + "_1617933229093_7099";
 
   // add your middleware config here
   config.middleware = [];
@@ -26,5 +26,24 @@ module.exports = appInfo => {
   return {
     ...config,
     ...userConfig,
+    mysql: {
+      client: {
+        host: "10.1.102.145",
+        port: "3306",
+        user: "root",
+        password: "mysql.145.com",
+        database: "db_widm",
+      },
+    },
   };
 };
+
+// exports.mysql = {
+//   client: {
+//     host: "10.1.102.145",
+//     port: "3306",
+//     user: "root",
+//     password: "mysql.145.com",
+//     database: "db_widm",
+//   },
+// };
