@@ -1,20 +1,41 @@
 <template>
   <div>
-    <Nuxt />
+    <el-container>
+      <el-header>
+        <my-header />
+      </el-header>
+      <el-container>
+        <el-aside>
+          <my-aside />
+        </el-aside>
+        <el-main>
+          <Nuxt />
+        </el-main>
+      </el-container>
+      <el-footer>
+        <my-footer />
+      </el-footer>
+    </el-container>
   </div>
 </template>
+<script>
+import myHeader from '../components/myHeader'
+import myFooter from '../components/myFooter'
+import myAside from '../components/myAside'
+
+export default {
+  components: {
+    myHeader,
+    myAside,
+    myFooter
+  }
+}
+</script>
 
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
