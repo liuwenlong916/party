@@ -2,32 +2,32 @@
   <div>
     <el-container>
       <el-header>
-        <my-header />
+        <index-header />
       </el-header>
       <el-container>
-        <el-aside>
-          <my-aside />
+        <el-aside style="width:auto">
+          <index-aside />
         </el-aside>
         <el-main>
           <Nuxt />
         </el-main>
       </el-container>
       <el-footer>
-        <my-footer />
+        <index-footer />
       </el-footer>
     </el-container>
   </div>
 </template>
 <script>
-import myHeader from '../components/myHeader'
-import myFooter from '../components/myFooter'
-import myAside from '../components/myAside'
+import indexHeader from '../components/index/head'
+import indexFooter from '../components/index/foot'
+import indexAside from '../components/index/aside'
 
 export default {
   components: {
-    myHeader,
-    myAside,
-    myFooter
+    indexHeader,
+    indexAside,
+    indexFooter
   }
 }
 </script>
