@@ -1,6 +1,8 @@
+'use strict';
+
 // const Controller = require("egg").Controller;
-const BaseController = require("./base");
-const jwt = require("jsonwebtoken");
+const BaseController = require('./base');
+const jwt = require('jsonwebtoken');
 
 class UserController extends BaseController {
   async info() {
@@ -20,7 +22,7 @@ class UserController extends BaseController {
     // }
     const user = await ctx.service.user.findOne({ user_code });
     if (!user) {
-      this.error(-1, "用户名错误");
+      this.error(-1, '用户名错误');
       return;
     }
     const token = jwt.sign(
@@ -30,10 +32,10 @@ class UserController extends BaseController {
       },
       app.config.jwt.secret,
       {
-        expiresIn: "1h",
+        expiresIn: '1h',
       }
     );
-    console.log("jwt", token, user.user.user_name);
+    console.log('jwt', token, user.user.user_name);
     this.success({ token, user_name: user.user.user_name, user_code });
   }
 }

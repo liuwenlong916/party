@@ -3,17 +3,17 @@
     <el-row>
       <el-col :span="8" :offset="16">
         <el-form
-          ref="ruleForm"
-          :model="ruleForm"
+          ref="form"
+          :model="form"
           status-icon
           :rules="rules"
           label-width="0px"
-          class="demo-ruleForm"
+          class="demo-form"
           style="background:white;padding:20px;width:300px;"
         >
-          <el-form-item prop="pass">
+          <el-form-item prop="username">
             <el-input
-              v-model="input4"
+              v-model="form.username"
               placeholder="请输入账号"
             >
               <i
@@ -23,12 +23,14 @@
             </el-input>
           </el-form-item>
 
-          <el-form-item prop="checkPass">
+          <el-form-item prop="captcha">
+            <div class="captcha">
+              <img :src="code.captcha" @click="resetCaptcha">
+            </div>
             <el-input
-              v-model="ruleForm.checkPass"
-              type="password"
+              v-model="form.captcha"
               autocomplete="off"
-              placeholder="请输入密码"
+              placeholder="请输入验证码"
             >
               <i
                 slot="prefix"
@@ -37,10 +39,10 @@
             </el-input>
           </el-form-item>
           <el-form-item style="text-align:left; height:10px;">
-            <el-form-label>忘记密码?</el-form-label>
+            <label>忘记密码?</label>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" style="width:100%" @click="submitForm('ruleForm')">
+            <el-button type="primary" style="width:100%" @click="submitForm('form')">
               登陆
             </el-button>
           </el-form-item>
@@ -53,65 +55,47 @@
 
 export default {
   data () {
-    const checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('年龄不能为空'))
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('请输入数字值'))
-        } else if (value < 18) {
-          callback(new Error('必须年满18岁'))
-        } else {
-          callback()
-        }
-      }, 1000)
-    }
-    const validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass')
-        }
-        callback()
-      }
-    }
-    const validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'))
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error('两次输入密码不一致!'))
-      } else {
-        callback()
-      }
-    }
     return {
-      ruleForm: {
-        pass: '',
-        checkPass: '',
-        age: ''
+      form: {
+        username: '',
+        captche: ''
       },
       rules: {
-        pass: [
-          { validator: validatePass, trigger: 'blur' }
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }// validator校验方法
         ],
-        checkPass: [
-          { validator: validatePass2, trigger: 'blur' }
-        ],
-        age: [
-          { validator: checkAge, trigger: 'blur' }
+        password: [
+          { required: true, message: '请输入验证码', trigger: 'blur' }
         ]
+      },
+      code: {
+        captcha: '/api/captcha'
       }
     }
   },
   methods: {
+    resetCaptcha () {
+      this.code.captcha = '/api/captcha?_t' + new Date().getTime()
+    },
     submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          alert('submit!')
+          // alert('submit!')
+          const obj = {
+            username: this.form.username,
+            captche: this.form.captche
+          }
+          const ret = await this.$http.get('/user/login', obj)
+          if (ret.code === 0) {
+            localStorage.setItem('token', ret.data.token)
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 500)
+          } else {
+            this.$message.error(ret.message)
+          }
         } else {
-        //   console.log('error submit!!')
+          console.log('error submit!!', valid)
           return false
         }
       })
@@ -131,5 +115,8 @@ export default {
   0% {
     opacity: 0;
   }
+}
+.el-input--prefix span{
+  padding:0px;
 }
 </style>

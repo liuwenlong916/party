@@ -81,11 +81,12 @@ html {
   background-color: #35495e;
 }
 
- .el-header, .el-footer {
-    background-color: #B3C0D1;
+.el-header, .el-footer {
+    background-color: white;
     color: #333;
     text-align: center;
-    line-height: 60px;
+    /* line-height: 90px; */
+    height:90px;
     padding:0px;
   }
 

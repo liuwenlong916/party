@@ -1,21 +1,25 @@
 <template>
   <div>
     <el-container>
-      <el-header>
-        <loginHead />
+      <el-header style="height:90px;">
+        <login-head />
       </el-header>
       <el-main class="back">
         <Nuxt />
       </el-main>
-      <el-footer>footer</el-footer>
+      <el-footer>
+        <login-footer />
+      </el-footer>
     </el-container>
   </div>
 </template>
 <script>
 import loginHead from '../components/login/head'
+import loginFooter from '../components/login/foot'
 export default {
   components: {
-    loginHead
+    loginHead,
+    loginFooter
   }
 }
 </script>
@@ -26,4 +30,5 @@ export default {
   background-size: cover;
   height:450px;
 }
+
 </style>
