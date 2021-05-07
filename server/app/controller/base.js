@@ -1,11 +1,12 @@
-const Controller = require("egg").Controller;
+'use strict';
+const Controller = require('egg').Controller;
 
-//定义基类，封装规范。
+// 定义基类，封装规范。
 class BaseController extends Controller {
   success(data) {
     this.ctx.body = {
       errCode: 0,
-      errMsg: "",
+      errMsg: '',
       data,
     };
   }

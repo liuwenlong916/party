@@ -14,17 +14,20 @@ class UserController extends BaseController {
   }
   async login() {
     const { ctx, app } = this;
-    // const { user_code, password, captcha } = ctx.request.body;
-    const user_code = ctx.params.user_code;
-    // if (captcha.toUpperCase() != ctx.session.captcha.toUpperCase()) {
-    //   this.error(-1, "验证码错误");
-    //   return;
-    // }
+    // const user_code = ctx.params.user_code;
+    const { user_code, captcha } = ctx.request.body;
+    console.log('login request', ctx.request.body);
+    if (captcha.toUpperCase() !== ctx.session.captcha.toUpperCase()) {
+      this.error(-1, '验证码错误');
+      return;
+    }
+
     const user = await ctx.service.user.findOne({ user_code });
-    if (!user) {
+    if (!user || !user.user) {
       this.error(-1, '用户名错误');
       return;
     }
+    console.log(user);
     const token = jwt.sign(
       {
         user_id: user.user.user_id,

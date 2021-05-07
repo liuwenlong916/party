@@ -11,9 +11,9 @@
           class="demo-form"
           style="background:white;padding:20px;width:300px;"
         >
-          <el-form-item prop="username">
+          <el-form-item prop="user_code">
             <el-input
-              v-model="form.username"
+              v-model="form.user_code"
               placeholder="请输入账号"
             >
               <i
@@ -57,11 +57,11 @@ export default {
   data () {
     return {
       form: {
-        username: '',
-        captche: ''
+        user_code: '',
+        captcha: ''
       },
       rules: {
-        username: [
+        user_code: [
           { required: true, message: '请输入用户名', trigger: 'blur' }// validator校验方法
         ],
         password: [
@@ -79,24 +79,23 @@ export default {
     },
     submitForm (formName) {
       this.$refs[formName].validate(async (valid) => {
-        if (valid) {
-          // alert('submit!')
-          const obj = {
-            username: this.form.username,
-            captche: this.form.captche
-          }
-          const ret = await this.$http.get('/user/login', obj)
-          if (ret.code === 0) {
-            localStorage.setItem('token', ret.data.token)
-            setTimeout(() => {
-              this.$router.push('/')
-            }, 500)
-          } else {
-            this.$message.error(ret.message)
-          }
-        } else {
+        if (!valid) {
           console.log('error submit!!', valid)
           return false
+        }
+        // alert('submit!')
+        const obj = {
+          user_code: this.form.user_code,
+          captcha: this.form.captcha
+        }
+        const ret = await this.$http.post('/user/login', obj)
+        if (ret.errCode === 0) {
+          localStorage.setItem('token', ret.data.token)
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 500)
+        } else {
+          this.$message.error(ret.message)
         }
       })
     }

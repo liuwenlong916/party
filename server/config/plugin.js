@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /** @type Egg.EggPlugin */
 // module.exports = {
@@ -10,9 +10,9 @@
 
 exports.mysql = {
   enable: true,
-  package: "egg-mysql",
+  package: 'egg-mysql',
 };
 exports.routerGroup = {
   enable: true,
-  package: "egg-router-group",
+  package: 'egg-router-group',
 };
