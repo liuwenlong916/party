@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-header>
+      <el-header style="text-align: right; font-size: 12px">
         <index-header />
       </el-header>
       <el-container>

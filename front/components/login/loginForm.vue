@@ -27,20 +27,16 @@
             <div class="captcha">
               <img :src="code.captcha" @click="resetCaptcha">
             </div>
-            <el-input
-              v-model="form.captcha"
-              autocomplete="off"
-              placeholder="请输入验证码"
-            >
+            <el-input v-model="form.captcha" placeholder="请输入验证码">
               <i
                 slot="prefix"
                 class="el-input__icon el-icon-lock"
               />
             </el-input>
           </el-form-item>
-          <el-form-item style="text-align:left; height:10px;">
+          <!-- <el-form-item style="text-align:left; height:10px;">
             <label>忘记密码?</label>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item>
             <el-button type="primary" style="width:100%" @click="submitForm('form')">
               登陆

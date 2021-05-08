@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-      :collapse="isCollapse"
+      :collapse="$store.state.isCollapse"
       default-active="2"
       class="el-menu-vertical-demo"
       background-color="#545c64"
@@ -10,11 +10,6 @@
       @open="handleOpen"
       @close="handleClose"
     >
-      <el-menu-item index="1" @click="isCollapse = !isCollapse">
-        <i class="el-icon-menu" />
-        <span slot="title">展开</span>
-        <i class="el-icon-arrow-right" />
-      </el-menu-item>
       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-location" />
@@ -65,7 +60,7 @@
 export default {
   data () {
     return {
-      isCollapse: true
+      isCollapse: this.$store.state.isCollapse
     }
   },
   methods: {

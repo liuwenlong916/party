@@ -39,7 +39,6 @@ export default {
           display: inline-block;
           padding: 0 11px;
           font-size: 12px;
-          color: #595959;
           line-height: 1;
         }
         .options span {
