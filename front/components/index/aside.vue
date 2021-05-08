@@ -1,57 +1,49 @@
 <template>
   <div>
     <el-menu
-      :collapse="$store.state.isCollapse"
-      default-active="2"
+      default-active="1"
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
+      :collapse="isCollapse"
       @open="handleOpen"
       @close="handleClose"
     >
+      <el-menu-item index="1">
+        <i class="el-icon-location" />
+        <span slot="title">党员信息</span>
+      </el-menu-item>
       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-location" />
-          <span>导航一</span>
+          <span>党员管理</span>
         </template>
-        <el-menu-item-group>
-          <template slot="title">
-            分组一
-          </template>
-          <el-menu-item index="1-1">
-            选项1
-          </el-menu-item>
-          <el-menu-item index="1-2">
-            选项2
-          </el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">
-            选项3
-          </el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">
-            选项4
-          </template>
-          <el-menu-item index="1-4-1">
-            选项1
-          </el-menu-item>
-        </el-submenu>
+        <el-menu-item index="2-1">
+          申请人信息
+        </el-menu-item>
+        <el-menu-item index="2-2">
+          积极分子信息
+        </el-menu-item>
+        <el-menu-item index="2-3">
+          发展对象信息
+        </el-menu-item>
+        <el-menu-item index="2-4">
+          预备党员信息
+        </el-menu-item>
       </el-submenu>
-      <el-menu-item index="3">
-        <i class="el-icon-menu" />
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="4" disabled>
-        <i class="el-icon-document" />
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="5">
-        <i class="el-icon-setting" />
-        <span slot="title">导航四</span>
-      </el-menu-item>
+      <el-submenu index="3">
+        <template slot="title">
+          <i class="el-icon-location" />
+          <span>配置功能</span>
+        </template>
+        <el-menu-item index="3-1">
+          管理员维护
+        </el-menu-item>
+        <el-menu-item index="3-2">
+          组织机构维护
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -60,7 +52,12 @@
 export default {
   data () {
     return {
-      isCollapse: this.$store.state.isCollapse
+      // isCollapse: this.$store.state.isCollapse
+    }
+  },
+  computed: {
+    isCollapse () {
+      return this.$store.state.isCollapse
     }
   },
   methods: {
@@ -77,6 +74,9 @@ export default {
 <style>
  .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 400px;
+    min-height: 100%;
+  }
+  .el-menu-item, .el-submenu {
+    width:200px;
   }
 </style>

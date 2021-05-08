@@ -5,7 +5,7 @@
         <index-header />
       </el-header>
       <el-container>
-        <el-aside style="width:auto">
+        <el-aside style="width:auto;">
           <index-aside />
         </el-aside>
         <el-main>
@@ -91,9 +91,9 @@ html {
   }
 
   .el-aside {
-    background-color: #D3DCE6;
+    background-color:#545c64;
     color: #333;
-    text-align: center;
+    /* text-align: center; */
     line-height: 200px;
   }
 

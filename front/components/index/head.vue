@@ -2,7 +2,7 @@
   <div class="header">
     <el-row>
       <el-col :span="16" style="text-align:left;">
-        <span class="el-dropdown-link" @click="$store.commit('collapse')">党员管理系统</span>
+        <span class="el-dropdown-link" @click="$store.commit('collapse')">新华保险共产党员信息管理平台</span>
       </el-col>
       <el-col :span="8">
         <el-dropdown>
