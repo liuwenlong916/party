@@ -25,28 +25,25 @@ export default {
 </script>
 
 <style>
-    .page-login-footer {
-      height: 100px;
-      display: flex;
-      justify-content: space-around;
-    }
-    .footer-content-right {
-        margin-top: 46px;
-        margin-bottom: 24px;
-
-      }
-    span {
-          display: inline-block;
-          padding: 0 11px;
-          font-size: 12px;
-          line-height: 1;
-        }
-        .options span {
-           border-left: 1px solid #909090;
-        }
-      .footer-content-left span{
-          font-size: 12px;
-          color: #595959;
-          line-height: 100px;
-      }
+  .page-login-footer {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+  }
+  .footer-content-right {
+    margin-top: 46px;
+    margin-bottom: 24px;
+  }
+  .options span {
+    border-left: 1px solid #909090;
+    display: inline-block;
+    padding: 0 11px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .footer-content-left span{
+    font-size: 12px;
+    color: #595959;
+    line-height: 100px;
+  }
 </style>

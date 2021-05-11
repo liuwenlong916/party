@@ -7,7 +7,7 @@
       <el-col :span="8">
         <el-dropdown>
           <span class="el-dropdown-link">
-            系统管理员<i class="el-icon-arrow-down el-icon--right" />
+            {{ userName }}<i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
@@ -26,8 +26,14 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      userName: ''
     }
+  },
+  async mounted () {
+    const res = await this.$http.get('/user/info')
+    this.userName = res.data.user.user_name
+    // this.$state.commit();
   }
 }
 </script>

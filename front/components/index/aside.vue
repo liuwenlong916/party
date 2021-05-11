@@ -79,4 +79,10 @@ export default {
   .el-menu-item, .el-submenu {
     width:200px;
   }
+  /* .el-menu-item, .el-submenu span {
+    display: inline-block;
+    padding: 0 11px;
+    font-size: 18px;
+    line-height: 1;
+  } */
 </style>

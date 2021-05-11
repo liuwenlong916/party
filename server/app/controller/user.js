@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');
 class UserController extends BaseController {
   async info() {
     const { ctx } = this;
-    const user_id = ctx.params.user_id;
+    // const user_id = ctx.params.user_id;
+    const user_id = ctx.state.user_id;
     console.log(user_id);
     const user = await ctx.service.user.findOne({ user_id });
     this.success(user);

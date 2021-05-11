@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'front',
+    title: '党员管理系统',
     htmlAttrs: {
       lang: 'en'
     },

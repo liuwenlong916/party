@@ -25,7 +25,7 @@ export default ({ store, redirect }) => {
   // 相应拦截
   service.interceptors.response.use((response) => {
     const { data } = response
-    if (data.code === -666) {
+    if (data.code === '-2') {
       MessageBox.confirm('登陆过期了', '登陆', {
         confirmButtonText: '登陆',
         showCancelButton: true,

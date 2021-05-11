@@ -13,6 +13,7 @@ module.exports = ({ app }) => {
     try {
       const res = jwt.verify(token, app.config.jwt.secret);
       ctx.state.user_name = res.user_name;
+      ctx.state.user_id = res.user_id;
       await next();
     } catch (e) {
       if ((e.name === 'TokenExpiredError')) {
