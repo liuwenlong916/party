@@ -9,7 +9,6 @@ class UserController extends BaseController {
     const { ctx } = this;
     // const user_id = ctx.params.user_id;
     const user_id = ctx.state.user_id;
-    console.log(user_id);
     const user = await ctx.service.user.findOne({ user_id });
     this.success(user);
   }
@@ -17,7 +16,6 @@ class UserController extends BaseController {
     const { ctx, app } = this;
     // const user_code = ctx.params.user_code;
     const { user_code, captcha } = ctx.request.body;
-    console.log('login request', ctx.request.body);
     if (captcha.toUpperCase() !== ctx.session.captcha.toUpperCase()) {
       this.error(-1, '验证码错误');
       return;

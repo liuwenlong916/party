@@ -117,4 +117,13 @@ html {
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
   }
+  .container {
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center;
+    text-align: center; */
+  }
 </style>
