@@ -119,11 +119,22 @@ html {
   }
   .container {
     margin: 0 auto;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     /* justify-content: center;
     align-items: center;
     text-align: center; */
+  }
+  .search{
+    height: 80px;
+    width: 100%;
+  }
+  .table{
+    height: auto;
+    width: 100%;
+  }
+  .left{
+    text-align:left;
   }
 </style>

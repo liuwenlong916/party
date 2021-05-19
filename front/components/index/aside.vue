@@ -7,12 +7,12 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       :collapse="isCollapse"
-      :router="isRouter"
-      :unique-opened="unique"
+      :router="true"
+      :unique-opened="true"
       @open="handleOpen"
       @close="handleClose"
     >
-      <el-menu-item index="party/peopleList">
+      <el-menu-item index="/party/peopleList">
         <i class="el-icon-user-solid" />
         <span slot="title">
           党员信息
@@ -23,7 +23,7 @@
           <i class="el-icon-user" />
           <span>党员管理</span>
         </template>
-        <el-menu-item index="appList">
+        <el-menu-item index="/applicant/peopleList">
           申请人信息
         </el-menu-item>
         <el-menu-item index="2-2">
@@ -56,8 +56,6 @@
 export default {
   data () {
     return {
-      isRouter: true,
-      unique: true
       // isCollapse: this.$store.state.isCollapse
     }
   },

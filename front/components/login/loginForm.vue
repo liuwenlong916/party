@@ -38,7 +38,7 @@
             <label>忘记密码?</label>
           </el-form-item> -->
           <el-form-item>
-            <el-button type="primary" style="width:100%" @click="submitForm('form')">
+            <el-button v-loading.fullscreen.lock="fullscreenLoading" type="primary" style="width:100%" @click="submitForm('form')">
               登陆
             </el-button>
           </el-form-item>
@@ -52,6 +52,7 @@
 export default {
   data () {
     return {
+      fullscreenLoading: false,
       form: {
         user_code: '',
         captcha: ''
@@ -79,6 +80,7 @@ export default {
           console.log('error submit!!', valid)
           return false
         }
+        this.fullscreenLoading = true
         // alert('submit!')
         const obj = {
           user_code: this.form.user_code,
@@ -87,11 +89,15 @@ export default {
         const ret = await this.$http.post('/user/login', obj)
         if (ret.errCode === 0) {
           localStorage.setItem('token', ret.data.token)
-          setTimeout(() => {
-            this.$router.push('/')
-          }, 500)
+          this.$router.push('/')
+          // this.fullscreenLoading = false
         } else {
-          this.$message.error(ret.message)
+          this.fullscreenLoading = false
+          this.$message({
+            showClose: true,
+            message: ret.errMsg,
+            type: 'error'
+          })
         }
       })
     }

@@ -53,6 +53,11 @@ export default {
       pathRewrite: {
         '^/api': ''
       }
+    },
+    '/auth/': {
+      target: 'http://10.1.131.30:7001',
+      secure: true
+
     }
   }
 }

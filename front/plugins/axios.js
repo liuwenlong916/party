@@ -32,7 +32,7 @@ export default ({ store, redirect }) => {
         type: 'warning'
       }).then(() => {
         localStorage.removeItem(TOKEN_KEY)
-        redirect({ path: 'login' })
+        redirect({ path: '/login' })
       })
     }
     return data
