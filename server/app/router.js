@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @param {Egg.Application} app - egg application
  */
@@ -13,5 +12,9 @@ module.exports = app => {
     router.post('/login', login);
     router.get('/info', jwt, info);
     router.get('/:user_id', jwt, info);
+  });
+  router.group({ name: 'applicant', prefix: '/applicant' }, router => {
+    const { getPageList } = controller.applicant;
+    router.get('/getPageList', getPageList);
   });
 };

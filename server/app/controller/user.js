@@ -8,7 +8,7 @@ class UserController extends BaseController {
   async info() {
     const { ctx } = this;
     // const user_id = ctx.params.user_id;
-    const user_id = ctx.state.user_id;
+    const user_id = ctx.state.user_id;// jwt鉴权后的数据
     const user = await ctx.service.user.findOne({ user_id });
     this.success(user);
   }

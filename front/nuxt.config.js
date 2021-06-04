@@ -47,17 +47,19 @@ export default {
     transpile: [/^element-ui/]
   },
   proxy: {
+    // '/api/': {
+    //   target: 'http://localhost:7001',
+    //   secure: true,
+    //   pathRewrite: {
+    //     '^/api': ''
+    //   }
+    // },
     '/api/': {
-      target: 'http://localhost:7001',
-      secure: true,
-      pathRewrite: {
-        '^/api': ''
-      }
-    },
-    '/auth/': {
-      target: 'http://10.1.131.30:7001',
+      target: 'http://10.1.131.30',
       secure: true
-
+      // pathRewrite: {
+      //   '': ''
+      // }
     }
   }
 }

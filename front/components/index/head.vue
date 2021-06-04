@@ -7,7 +7,7 @@
       <el-col :span="8">
         <el-dropdown>
           <span class="el-dropdown-link">
-            {{ userName }}<i class="el-icon-arrow-down el-icon--right" />
+            {{ username }}<i class="el-icon-arrow-down el-icon--right" />
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
@@ -22,18 +22,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1',
-      userName: ''
+      activeIndex2: '1'
     }
   },
-  async mounted () {
-    const res = await this.$http.get('/user/info')
-    this.userName = res.data.user.user_name
-    // this.$state.commit();
+  computed: {
+    ...mapState(['username'])
+  },
+  created () {
+    // if (localStorage.getItem('username')) {
+    //   this.$store.commit('setUsername', localStorage.getItem('username'))
+    // } else {
+    //   localStorage.setItem('username', this.username)
+    // }
+    localStorage.getItem('username')
+      ? this.$store.commit('setUsername', localStorage.getItem('username'))
+      : localStorage.setItem('username', this.username)
   }
 }
 </script>

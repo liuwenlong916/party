@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-      default-active="1"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
@@ -9,6 +9,7 @@
       :collapse="isCollapse"
       :router="true"
       :unique-opened="true"
+
       @open="handleOpen"
       @close="handleClose"
     >

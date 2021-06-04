@@ -34,10 +34,10 @@ module.exports = appInfo => {
     },
     mysql: {
       client: {
-        host: '10.1.102.145',
+        host: '10.1.131.31',
         port: '3306',
         user: 'root',
-        password: 'mysql.145.com',
+        password: 'new@1234.',
         database: 'db_widm',
       },
     },
