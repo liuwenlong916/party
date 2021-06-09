@@ -69,7 +69,7 @@
         <el-table-column prop="societyName" label="党支部" align="center" />
         <el-table-column label="操作" width="120" align="center">
           <template slot-scope="scope">
-            <el-button type="text" @click.native.prevent="handleEdit(scope)">
+            <el-button type="text" @click.native.prevent="handleEdit(scope.row)">
               修改
             </el-button>
           </template>
@@ -132,8 +132,8 @@ export default {
     handleAdd () {
       this.$refs.editDialog.showDialog()
     },
-    handleEdit ({ row }) {
-      this.$refs.editDialog.showDialog(row.appId)
+    handleEdit ({ appId }) {
+      this.$refs.editDialog.showDialog(appId)
     },
     handleDelete () {
       const appId = []

@@ -49,6 +49,18 @@
           组织机构维护
         </el-menu-item>
       </el-submenu>
+      <el-submenu index="4">
+        <template slot="title">
+          <i class="el-icon-setting" />
+          <span>统计报表</span>
+        </template>
+        <el-menu-item index="/report/systemReport">
+          系统报表
+        </el-menu-item>
+        <el-menu-item index="/report/reportList">
+          天报报表设置
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </div>
 </template>

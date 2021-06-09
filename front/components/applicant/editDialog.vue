@@ -4,6 +4,7 @@
       :title="title"
       :visible.sync="show"
       width="60%"
+      @close="handleClose"
     >
       <el-form
         ref="editForm"
@@ -22,8 +23,8 @@
           </el-form-item>
           <el-form-item label="民族" prop="appNationality">
             <el-select v-model="app.appNationality" placeholder="请选择">
-              <el-option label="汉族" value="1" />
-              <el-option label="少数民族" value="2" />
+              <el-option label="汉族" :value="1" />
+              <el-option label="少数民族" :value="2" />
             </el-select>
           </el-form-item>
           <el-form-item v-if="app.appId" label="入党成熟度" prop="maturityType">
@@ -110,25 +111,7 @@ export default {
       show: false,
       cardDisable: false,
       title: '修改申请人信息',
-      app: {
-        appId: '',
-        appName: '',
-        appSexDesc: '',
-        appSex: '',
-        appCard: '',
-        appBirthday: '',
-        appEducation: '',
-        appNationality: '',
-        appJobPosition: '',
-        orgId: '',
-        appMechanism: '',
-        maturityType: '1',
-        societyNo: '',
-        applyDate: '',
-        actDate: '',
-        devDate: '',
-        probatDate: ''
-      },
+      app: {},
       formLabelWidth: '170px',
       rules: {
         appName: [
@@ -188,13 +171,6 @@ export default {
     }
   },
   watch: {
-    show (newValue) {
-      if (!newValue) {
-        this.$refs.editForm.resetFields()
-        this.societyList = []
-      }
-      this.cardDisable = false
-    },
     'app.appCard' (newValue) {
       if (!newValue || newValue.length !== 18) {
         this.app.appSex = ''
@@ -212,7 +188,38 @@ export default {
       this.app.appBirthday = year + '-' + mounth + '-' + day
     }
   },
+  mounted () {
+    this.getOrgList()
+    this.app = {
+      appId: '',
+      appName: '',
+      appSexDesc: '',
+      appSex: '',
+      appCard: '',
+      appBirthday: '',
+      appEducation: '',
+      appNationality: '',
+      appJobPosition: '',
+      orgId: '',
+      appMechanism: '',
+      maturityType: '1',
+      societyNo: '',
+      applyDate: '',
+      actDate: '',
+      devDate: '',
+      probatDate: ''
+    }
+  },
   methods: {
+    handleClose () {
+      console.log('close')
+      // TODO清空无效
+      this.$refs.editForm.resetFields()
+      // this.app = {}
+      this.societyList = []
+      this.cardDisable = false
+      this.app.appId = ''
+    },
     handleChangeOrg () {
       this.getSocietyList(this.app.orgId)
     },
@@ -236,18 +243,30 @@ export default {
         })
       }
     },
+    loadingShow () {
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+      return loading
+    },
     async showDialog (appId = null) {
-      this.show = true
-      this.getOrgList()
+      const loading = this.loadingShow()
       if (appId) {
         await this.getAppInfo(appId)
         await this.getSocietyList(this.app.orgId)
       }
+
+      this.show = true
+      loading.close()
     },
     async getAppInfo (appId) {
       const res = await this.$http.get('/applicants/getInfo', { appId })
       const data = res.data.data[0]
       data && (this.cardDisable = true)
+      // this.app = data
       Object.keys(this.app).forEach((prop) => {
         data[prop] && (this.app[prop] = data[prop])
         if (prop === 'appSexDesc') {

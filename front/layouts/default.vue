@@ -100,9 +100,9 @@ html {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
+    /* text-align: center;
+    line-height: 160px; */
     height: 100%;
-    /*line-height: 160px; */
   }
 
   body > .el-container {
@@ -136,5 +136,13 @@ html {
   }
   .left{
     text-align:left;
+  }
+
+  .center{
+    text-align:center;
+  }
+
+  .right{
+    text-align:right;
   }
 </style>
